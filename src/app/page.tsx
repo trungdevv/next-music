@@ -40,7 +40,7 @@ export default function Home() {
                 helped me deliver stunning designs to my clients faster than
                 ever before.&rdquo;
               </p>
-              <footer className="text-sm">Sofia Davis</footer>
+              <footer className="text-sm">Trung Dev</footer>
             </blockquote>
           </div>
         </div>
