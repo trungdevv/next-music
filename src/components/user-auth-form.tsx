@@ -12,7 +12,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   function signInGithub() {
     setIsLoading(true);
     // router.push
-    signIn("github");
+    signIn("github", { callbackUrl: "/examples" });
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
@@ -33,7 +33,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <Button
         variant="outline"
         type="button"
-        onClick={() => signInGithub()}
+        onClick={signInGithub}
         disabled={isLoading}
       >
         {isLoading ? (
