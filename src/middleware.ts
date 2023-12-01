@@ -1,10 +1,11 @@
 import { withAuth } from "next-auth/middleware";
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export default withAuth(
   function middleware(req) {
+    const res = NextResponse.next;
+    console.log(res);
     console.log(req.nextauth.token);
   },
   {
