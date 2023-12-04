@@ -11,10 +11,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const signInGithub = () => {
     setIsLoading(true);
-    signIn("github", { callbackUrl: "/examples" });
+    signIn("github", { callbackUrl: "/music" });
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 500);
   };
 
   return (
