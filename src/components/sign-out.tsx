@@ -13,17 +13,17 @@ export default function Example() {
   // const { data, error } = await supabase.from("users").select("name");
   const { data: session, status } = useSession();
   return (
-    <div className="absolute right-4 top-4 md:right-8 md:top-8 flex items-center">
+    <div className="absolute right-4 flex items-center">
       <Avatar>
         {/* <p>hi, {session?.user?.name}</p> */}
         <AvatarImage src={session?.user?.image ?? ""} />
         <AvatarFallback>hi</AvatarFallback>
       </Avatar>
       <Button
-        variant="ghost"
+      variant={'secondary'}
         onClick={() => signOut({ callbackUrl: "/" })}
       >
-        Sign Out
+        Sign out
       </Button>
     </div>
   );

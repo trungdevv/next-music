@@ -1,22 +1,28 @@
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
+import { NextRequest } from "next/server";
+import { getToken } from "next-auth/jwt";
+const publicRouter = ["/"];
 export default withAuth(
-  function middleware(req) {
-    const res = NextResponse.next;
-    console.log(res);
-    console.log(req.nextauth.token);
+  async function middleware(req) {
+    const { pathname } = req.nextUrl;
+    const token = await getToken({ req });
+    if (token && pathname === "/") {
+      return NextResponse.redirect(new URL("/music", req.url));
+    }
   },
   {
     callbacks: {
       authorized: ({ req, token }) => {
         const { pathname } = req.nextUrl;
-        if (pathname === "/music") {
-          return !!token; // If there is a token, the user is authenticated
+        if (publicRouter.includes(pathname)) {
+          return true;
         }
-        return true;
+        return !!token;
       },
+    },
+    pages: {
+      // signIn: "/",
     },
   }
 );
