@@ -9,14 +9,13 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  function signInGithub() {
+  const signInGithub = () => {
     setIsLoading(true);
-    // router.push
     signIn("github", { callbackUrl: "/examples" });
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-  }
+  };
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
