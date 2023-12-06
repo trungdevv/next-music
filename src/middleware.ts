@@ -4,18 +4,20 @@ import type { NextRequest } from "next/server";
 
 export default withAuth(
   function middleware(req) {
-    // console.log("🚀 ~ file: middleware.ts:7 ~ middleware ~ req:", req)
-    // console.log(req.nextauth.token);
-    // console.log("🚀 ~ file: middleware.ts:8 ~ middleware ~ req:", req)
+    console.log(req.nextauth.token);
   },
   {
     callbacks: {
-      authorized: ({ req,token }) => {
-        return !!token; // If there is a token, the user is authenticated
+      authorized: ({ req, token }) => {
+        const { pathname } = req.nextUrl;
+        if (pathname === "/examples") {
+          return !!token; // If there is a token, the user is authenticated
+        }
+        return true; 
       },
     },
   }
 );
 export const config = {
-  matcher: "/examples/authentication",
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
