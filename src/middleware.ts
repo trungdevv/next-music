@@ -13,7 +13,7 @@ export default withAuth(
         if (pathname === "/examples") {
           return !!token; // If there is a token, the user is authenticated
         }
-        return true; 
+        return true;
       },
     },
   }
