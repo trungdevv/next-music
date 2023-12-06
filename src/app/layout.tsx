@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/session-provider";
-import { Menu } from "./music/components/menu";
+import { Menu } from "../components/menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +21,10 @@ export default async function RootLayout({
   // console.log(session);
   return (
     <html lang="en">
-      <body className={inter.className}  suppressHydrationWarning={true}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <SessionProvider session={session}>
           {session ? <Menu /> : null}
-          {children}
+          <div className="mt-14">{children}</div>
         </SessionProvider>
       </body>
     </html>

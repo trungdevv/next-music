@@ -1,17 +1,30 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-import { Playlist } from "../data/playlists"
+import { Playlist } from "../data/playlists";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getServerSession } from "next-auth";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  playlists: Playlist[]
+  playlists: Playlist[];
 }
 
-export function Sidebar({ className, playlists }: SidebarProps) {
+export async function Sidebar({ className, playlists }: SidebarProps) {
+  const session = await getServerSession();
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
+        <div className="px-3 y-2">
+          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+          <p>hi, {session?.user?.name}</p>
+          </h2>
+          <Avatar>
+       
+        <AvatarImage src={session?.user?.image ?? ""} />
+        <AvatarFallback>hi</AvatarFallback>
+      </Avatar>
+        </div>
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Discover
@@ -164,12 +177,12 @@ export function Sidebar({ className, playlists }: SidebarProps) {
             </Button>
           </div>
         </div>
-        <div className="py-2">
-          <h2 className="relative px-7 text-lg font-semibold tracking-tight">
+        <div className="py-2 px-3">
+          <h2 className="relative px-4 mb-2 text-lg font-semibold tracking-tight">
             Playlists
           </h2>
-          <ScrollArea className="h-[300px] px-1">
-            <div className="space-y-1 p-2">
+          <ScrollArea className="h-[300px]">
+            <div className="space-y-1 ">
               {playlists?.map((playlist, i) => (
                 <Button
                   key={`${playlist}-${i}`}
@@ -200,5 +213,5 @@ export function Sidebar({ className, playlists }: SidebarProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
