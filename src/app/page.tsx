@@ -1,7 +1,8 @@
 import { UserAuthForm } from "@/components/user-auth-form";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <main className="">
       <div className="container relative  h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">

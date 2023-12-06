@@ -12,7 +12,7 @@ export default withAuth(
     callbacks: {
       authorized: ({ req, token }) => {
         const { pathname } = req.nextUrl;
-        if (pathname === "/examples") {
+        if (pathname === "/music") {
           return !!token; // If there is a token, the user is authenticated
         }
         return true;
