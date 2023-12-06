@@ -8,14 +8,11 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET as string,
     }),
   ],
-  callbacks: {
-    authorized({ request, auth }) {
-      const { pathname } = request.nextUrl
-      if (pathname === "/middleware-example") {
-        console.log(1);
-        return !!auth
-      }
-      return true
-    },
-  },
+  // pages: {
+  //   signIn: "/auth/signin",
+  //   signOut: "/auth/signout",
+  //   error: "/auth/error",
+  //   verifyRequest: "/auth/verify-request",
+  //   newUser: "/auth/new-user",
+  // },
 };
