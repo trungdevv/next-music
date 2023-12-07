@@ -4,6 +4,9 @@ import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/session-provider";
 import { Menu } from "../components/menu";
+import { Sidebar } from "./music/components/sidebar";
+import { playlists } from "./music/data/playlists";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +21,29 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession();
-  // console.log(session);
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body
+        className={inter.className}
+        style={{ height: "100%" }}
+        suppressHydrationWarning={true}
+      >
         <SessionProvider session={session}>
-          {session ? <Menu /> : null}
-          <div className="mt-14">{children}</div>
+          {session ? (
+            <div>
+              <Menu />
+              <div className="grid grid-cols-7 mt-14 relative">
+                <aside className="self-start sticky top-0 col-span-1 ">
+                  <Sidebar playlists={playlists} className="hidden lg:block" />
+                </aside>
+                <main className="col-span-6">
+                  <ScrollArea className="h-[calc(100vh-56px)]">{children}</ScrollArea>
+                </main>
+              </div>
+            </div>
+          ) : (
+            <>{children}</>
+          )}
         </SessionProvider>
       </body>
     </html>
