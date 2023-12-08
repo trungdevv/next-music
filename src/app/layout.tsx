@@ -7,6 +7,7 @@ import { Menu } from "../components/menu";
 import { Sidebar } from "./music/components/sidebar";
 import { playlists } from "./music/data/playlists";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Scrollbar } from "@radix-ui/react-scroll-area";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,13 +33,18 @@ export default async function RootLayout({
           {session ? (
             <div>
               <Menu />
-              <div className="grid grid-cols-7 mt-14 relative">
-                <aside className="self-start sticky top-0 col-span-1 ">
-                  <Sidebar playlists={playlists} className="hidden lg:block" />
-                </aside>
-                <main className="col-span-6">
-                  <ScrollArea className="h-[calc(100vh-56px)]">{children}</ScrollArea>
-                </main>
+              <div className="flex mt-14 container mx-auto px-4">
+                <div className="h-screen w-[20%] self-start relative">
+                  <div className="fixed">
+                    <Sidebar
+                      playlists={playlists}
+                      className="hidden lg:block"
+                    />
+                    {/* abcxyz */}
+                  </div>
+                </div>
+
+                <main className="w-[80%]">{children}</main>
               </div>
             </div>
           ) : (

@@ -1,0 +1,11 @@
+@url_dev=https://musicapi13.p.rapidapi.com
+#@x_api_key=db9ef7384ee71e72e2b9bd78488da214653684707e45af8e7fbc9906b97ccad596b2be64f8cc4c25c183ead51ec260cd1cfe4f07709718476bedbe172e6be706
+@X-RapidAPI-Key=ca623de6aamshce7911d5ca3a8ecp1c19cbjsn1ca864e51ce1
+@X-RapidAPI-Host=musicapi13.p.rapidapi.com
+
+### signup
+GET {{url_dev}}/public/search/introspection
+Content-Type: application/json
+X-RapidAPI-Key: {{X-RapidAPI-Key}}
+X-RapidAPI-Host: {{X-RapidAPI-Host}}
+Connection: keep-alive
