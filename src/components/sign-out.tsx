@@ -11,13 +11,8 @@ export default function Example() {
   // );
   // const { data, error } = await supabase.from("users").select("name");
   return (
-    <div className="absolute right-4 flex items-center">
-      <Button
-        variant={"secondary"}
-        onClick={() => signOut({ callbackUrl: "/" })}
-      >
-        Sign out
-      </Button>
-    </div>
+    <Button variant={"secondary"} onClick={() => signOut({ callbackUrl: "/" })}>
+      Sign out
+    </Button>
   );
 }

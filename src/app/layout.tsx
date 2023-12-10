@@ -33,17 +33,15 @@ export default async function RootLayout({
           {session ? (
             <div>
               <Menu />
-              <div className="flex mt-14 container mx-auto px-4">
+              <div className="flex mt-14 container max-w-screen-xl mx-auto px-4">
                 <div className="h-screen w-[20%] self-start relative">
                   <div className="fixed">
                     <Sidebar
                       playlists={playlists}
                       className="hidden lg:block"
                     />
-                    {/* abcxyz */}
                   </div>
                 </div>
-
                 <main className="w-[80%]">{children}</main>
               </div>
             </div>
