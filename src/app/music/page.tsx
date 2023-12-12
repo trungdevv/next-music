@@ -52,10 +52,10 @@ export default function MusicPage() {
                           <AlbumArtwork
                             key={album.name}
                             album={album}
-                            className="w-[250px]"
-                            aspectRatio="portrait"
-                            width={250}
-                            height={330}
+                            className="w-[160px]"
+                            aspectRatio="square"
+                            width={160}
+                            height={160}
                           />
                         ))}
                       </div>
