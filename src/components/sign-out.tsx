@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 // import { createClient } from "@supabase/supabase-js";
 import { signOut } from "next-auth/react";
+import ReactPlayer from "react-player";
 
 export default function Example() {
   // const supabase = createClient(
@@ -11,8 +12,11 @@ export default function Example() {
   // );
   // const { data, error } = await supabase.from("users").select("name");
   return (
+    <>
     <Button variant={"secondary"} onClick={() => signOut({ callbackUrl: "/" })}>
       Sign out
     </Button>
+    </>
+    
   );
 }

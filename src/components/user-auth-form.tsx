@@ -11,7 +11,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const signInGithub = () => {
     setIsLoading(true);
-    signIn("github", { callbackUrl: "/music" });
+    signIn("spotify", { callbackUrl: "/music" });
     setTimeout(() => {
       setIsLoading(false);
     }, 500);

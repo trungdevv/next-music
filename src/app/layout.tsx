@@ -8,7 +8,7 @@ import { Sidebar } from "./music/components/sidebar";
 import { playlists } from "./music/data/playlists";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Scrollbar } from "@radix-ui/react-scroll-area";
-
+import ReactPlayer from "react-player/youtube";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -42,7 +42,9 @@ export default async function RootLayout({
                     />
                   </div>
                 </div>
-                <main className="w-[80%]">{children}</main>
+                <main className="w-[80%]">
+                  {children}
+                </main>
               </div>
             </div>
           ) : (
