@@ -13,10 +13,12 @@ export default function Example() {
   // const { data, error } = await supabase.from("users").select("name");
   return (
     <>
-    <Button variant={"secondary"} onClick={() => signOut({ callbackUrl: "/" })}>
-      Sign out
-    </Button>
+      <Button
+        variant={"secondary"}
+        onClick={() => signOut({ callbackUrl: "/" })}
+      >
+        Sign out
+      </Button>
     </>
-    
   );
 }
