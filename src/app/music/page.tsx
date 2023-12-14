@@ -5,9 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlbumArtwork } from "./components/album-artwork";
 import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder";
 import { listenNowAlbums, madeForYouAlbums } from "./data/albums";
-import { getServerSession } from "next-auth";
-import { options } from "../api/auth/[...nextauth]/options";
 import { Button } from "@/components/ui/button";
+import getAlbum, { myAction } from "@/actions/music";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -15,28 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default async function MusicPage() {
-  async function myAction() {
-    "use server";
-    const session = await getServerSession(options);
-    const accessToken = (session as any).accessToken;
-    const res = await fetch(
-      `https://api.spotify.com/v1/browse/new-releases?country=VN&limit=1`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    const data = await res.json();
-    // console.log(data?.albums?.items)
-  }
+  console.log(await getAlbum())
   return (
     <>
       <div className="bg-background">
-        <form action={myAction}>
-          <Button></Button>
-        </form>
-
         <div className="grid lg:grid-cols-5">
           <div className="col-span-3 lg:col-span-5 lg:border-l">
             <div className="h-full px-4 py-6 lg:px-8">

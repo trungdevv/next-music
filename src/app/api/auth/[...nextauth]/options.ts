@@ -3,9 +3,9 @@ import SpotifyProvider from "next-auth/providers/spotify";
 
 type SessionConfig = Session & {
   accessToken: string;
-  user : DefaultUser & {
+  user: DefaultUser & {
     id: string;
-  }
+  };
 };
 export const options: NextAuthOptions = {
   providers: [
@@ -20,9 +20,7 @@ export const options: NextAuthOptions = {
       if (account) {
         token.accessToken = account.access_token;
         token.id = (profile as any).id;
-        token.expires_at = Math.floor(Date.now() / 1000 + (account as any).expires_in);
       }
-      console.log(token)
       return token;
     },
     async session({ session, token, user }) {
@@ -30,13 +28,11 @@ export const options: NextAuthOptions = {
       const sessionConfig: SessionConfig = {
         ...session,
         accessToken: token.accessToken as string,
-        
         user: {
           ...session.user,
-          id: token.id as string
-        }
-      }
-      // console.log(1)
+          id: token.id as string,
+        },
+      };
       return sessionConfig;
     },
   },
