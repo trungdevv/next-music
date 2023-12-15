@@ -5,8 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlbumArtwork } from "./components/album-artwork";
 import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder";
 import { listenNowAlbums, madeForYouAlbums } from "./data/albums";
-import { Button } from "@/components/ui/button";
-import getAlbum, { myAction } from "@/actions/music";
+import getAlbum from "@/actions/music";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -14,7 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default async function MusicPage() {
-  console.log(await getAlbum())
+  const data = await getAlbum();
+  console.log(data)
   return (
     <>
       <div className="bg-background">

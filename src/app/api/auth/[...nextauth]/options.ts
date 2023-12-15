@@ -12,8 +12,10 @@ export const options: NextAuthOptions = {
     SpotifyProvider({
       clientId: process.env.SPOTIFY_ID as string,
       clientSecret: process.env.SPOTIFY_SECRET as string,
+      authorization: { params: { scope: "user-top-read" } },
     }),
   ],
+
   callbacks: {
     async jwt({ token, account, profile }) {
       // Persist the OAuth access_token and or the user id to the token right after signin
