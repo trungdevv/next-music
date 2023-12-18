@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 
 async function fetchWebApi(endpoint: string, method: string, body?: BodyInit) {
   const session = await getServerSession(options);
+  console.log(session)
   const accessToken = (session as any).accessToken;
   const res = await fetch(`https://api.spotify.com/${endpoint}`, {
     headers: {

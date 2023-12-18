@@ -7,6 +7,7 @@ export default withAuth(
   async function middleware(req) {
     const { pathname } = req.nextUrl;
     const token = await getToken({ req });
+    // console.log(token)
     if (token && pathname === "/") {
       return NextResponse.redirect(new URL("/music", req.url));
     }
