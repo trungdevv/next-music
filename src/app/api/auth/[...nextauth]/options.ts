@@ -26,7 +26,9 @@ async function refreshAccessToken(token: any) {
     // https://github.com/github/fetch/issues/263
     const searchParams = Object.keys(data)
       .map((key) => {
-        return encodeURIComponent(key) + "=" + encodeURIComponent((data as any)[key]);
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent((data as any)[key])
+        );
       })
       .join("&");
 
@@ -79,22 +81,22 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     async jwt({ token, account, profile }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
+      // Initial sign in
       if (account) {
         token.refreshToken = account.refresh_token;
         token.accessToken = account.access_token;
         token.expires_at = addSeconds(new Date(), expires - 10); // set initial expire time
         token.id = (profile as any).id;
-        return token;
-      } else if (new Date().toISOString() < (token as any).expires_at) {
-        return token;
-      } else {
-        return refreshAccessToken(token);
       }
+      // Return previous token if the access token has not expired yet
+      if (new Date().toISOString() < (token as any).expires_at) {
+        return token;
+      }
+      // Access token has expired, try to update it
+      return refreshAccessToken(token);
     },
     async session({ session, token, user }) {
-      // Send properties to the client, like an access_token and user id from a provider.
-      console.log(token);
+      // console.log(token);
       const sessionConfig: SessionConfig = {
         ...session,
         accessToken: token.accessToken as string,

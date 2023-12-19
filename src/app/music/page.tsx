@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function MusicPage() {
   const data = await getAlbum();
-  console.log(data.items)
+  // console.log(data.items)
   return (
     <>
       <div className="bg-background">
