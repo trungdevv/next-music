@@ -10,6 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Scrollbar } from "@radix-ui/react-scroll-area";
 import ReactPlayer from "react-player/youtube";
 import TrackPlayerProvider from "@/provider/track-player-provider";
+import PreviewPlayer from "@/components/preview-player";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -45,6 +46,7 @@ export default async function RootLayout({
                     </div>
                   </div>
                   <main className="w-[80%]">{children}</main>
+                  <PreviewPlayer />
                 </div>
               </div>
             </TrackPlayerProvider>

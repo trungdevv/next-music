@@ -2,10 +2,11 @@ import { Metadata } from "next";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlbumArtwork } from "./components/album-artwork";
+import { AlbumArtwork } from "../../components/track-item";
 import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder";
 import { listenNowAlbums, madeForYouAlbums } from "./data/albums";
 import getAlbum from "@/actions/music";
+import { Track } from "@/types/types";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -13,8 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function MusicPage() {
-  const data = await getAlbum();
-  // console.log(data.items)
+  const data = (await getAlbum().then((track) => track.items)) as Track[];
   return (
     <>
       <div className="bg-background">
@@ -51,14 +51,14 @@ export default async function MusicPage() {
                   <div className="relative">
                     <ScrollArea>
                       <div className="flex space-x-4 pb-4">
-                        {listenNowAlbums.map((album) => (
+                        {data.map((tracks) => (
                           <AlbumArtwork
-                            key={album.name}
-                            album={album}
+                            key={tracks?.id}
                             className="w-[160px]"
-                            aspectRatio="square"
+                            aspectRatio="portrait"
                             width={160}
                             height={160}
+                            track={tracks}
                           />
                         ))}
                       </div>
@@ -77,7 +77,7 @@ export default async function MusicPage() {
                   <div className="relative">
                     <ScrollArea>
                       <div className="flex space-x-4 pb-4">
-                        {madeForYouAlbums.map((album) => (
+                        {/* {madeForYouAlbums.map((album) => (
                           <AlbumArtwork
                             key={album.name}
                             album={album}
@@ -86,7 +86,7 @@ export default async function MusicPage() {
                             width={150}
                             height={150}
                           />
-                        ))}
+                        ))} */}
                       </div>
                       <ScrollBar orientation="horizontal" />
                     </ScrollArea>
