@@ -19,7 +19,7 @@ export default function MainControllers() {
   } = usePlayer();
 
   return (
-    <div className="flex flex-col items-center justify-center col-span-7 gap-3">
+    <div className="flex items-center gap-3">
       <div className="flex items-center gap-5">
         <button>
           <Shuffle size={16} className="text-gray" />
@@ -45,17 +45,17 @@ export default function MainControllers() {
         </button>
       </div>
 
-      <div className="flex items-center justify-center w-full gap-2">
+      <div className="flex items-center justify-center gap-2">
         <span className="text-xs text-gray">
           {currentTime ? fmtMSS(currentTime * 1000) : "0:00"}
         </span>
         <Progress.Root
-          className="relative w-1/2 h-1 overflow-hidden rounded-full bg-gray-dark"
+          className="relative h-1 overflow-hidden rounded-full bg-slate-950"
           style={{ transform: "translateZ(0)" }}
           value={slider}
         >
           <Progress.Indicator
-            className="bg-white w-full h-full transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+            className="bg-white w-full h-full transition-transform grow duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
             style={{ transform: `translateX(-${100 - slider}%)` }}
           />
         </Progress.Root>

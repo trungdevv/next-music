@@ -96,7 +96,7 @@ export const options: NextAuthOptions = {
       return refreshAccessToken(token);
     },
     async session({ session, token, user }) {
-      // console.log(token);
+      console.log(token);
       const sessionConfig: SessionConfig = {
         ...session,
         accessToken: token.accessToken as string,

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 export default async function MusicPage() {
   const data = (await getAlbum().then((track) => track.items)) as Track[];
+  // console.log(data);
   return (
     <>
       <div className="bg-background">
@@ -51,7 +52,7 @@ export default async function MusicPage() {
                   <div className="relative">
                     <ScrollArea>
                       <div className="flex space-x-4 pb-4">
-                        {data.map((tracks) => (
+                        {data && data.map((tracks) => (
                           <AlbumArtwork
                             key={tracks?.id}
                             className="w-[160px]"
@@ -77,16 +78,16 @@ export default async function MusicPage() {
                   <div className="relative">
                     <ScrollArea>
                       <div className="flex space-x-4 pb-4">
-                        {/* {madeForYouAlbums.map((album) => (
+                        {data && data.map((tracks) => (
                           <AlbumArtwork
-                            key={album.name}
-                            album={album}
-                            className="w-[150px]"
-                            aspectRatio="square"
-                            width={150}
-                            height={150}
+                            key={tracks?.id}
+                            className="w-[160px]"
+                            aspectRatio="portrait"
+                            width={160}
+                            height={160}
+                            track={tracks}
                           />
-                        ))} */}
+                        ))}
                       </div>
                       <ScrollBar orientation="horizontal" />
                     </ScrollArea>
