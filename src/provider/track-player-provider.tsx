@@ -32,7 +32,7 @@ interface Props {
 
 export default function TrackPlayerProvider({ children }: Props) {
   const { currentTrack } = useStore();
-
+  const [volume, setVolume] = useState<number>(0.1);
   const [currentTrackAudio, setCurrentTrackAudio] =
     useState<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -84,7 +84,10 @@ export default function TrackPlayerProvider({ children }: Props) {
     };
     handlePlay();
   }, [currentTrackAudio]);
-
+  useEffect(() => {
+    if (!currentTrack) return;
+    currentTrackAudio!.volume = volume;
+  }, [volume]);
   const togglePlay = async () => {
     if (isPlaying) pause();
     else await play();
@@ -93,6 +96,7 @@ export default function TrackPlayerProvider({ children }: Props) {
   const play = async () => {
     setIsPlaying(true);
     await currentTrackAudio?.play();
+    currentTrackAudio!.volume = 1.0;
   };
 
   const pause = () => {
