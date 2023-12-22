@@ -10,22 +10,22 @@ interface IProps {
 
 export default function PlayerTrackInfo({ currentTrack }: IProps) {
   return (
-    <div className="flex items-center col-span-3 gap-3">
+    <div className="flex items-center gap-3">
       {currentTrack.album ? (
         <Image
           src={currentTrack.album.images[0].url}
           alt={currentTrack.name}
-          height={56}
-          width={56}
-          className="object-cover rounded-lg w-14 h-14 aspect-square"
+          height={36}
+          width={36}
+          className="object-cover rounded-lg aspect-square"
         />
       ) : (
         <Music size={56} />
       )}
-      <div className="max-w-full">
-        <h4 className="text-sm font-semibold text-white truncate">
-          {currentTrack?.name}
-        </h4>
+      <div className="max-w-[150px]">
+        <p className="text-xs font-semibold text-white truncate">
+          {currentTrack?.name}   {currentTrack?.name}   {currentTrack?.name}   {currentTrack?.name}
+        </p>
         <Link
           href={`/artist/${currentTrack?.artists[0].id}`}
           className="text-xs text-gray"
@@ -33,9 +33,6 @@ export default function PlayerTrackInfo({ currentTrack }: IProps) {
           {currentTrack?.artists[0].name}
         </Link>
       </div>
-      <button>
-        <RxHeartFilled className="text-xl text-primary" />
-      </button>
     </div>
   );
 }

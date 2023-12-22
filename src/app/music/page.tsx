@@ -4,9 +4,10 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AlbumArtwork } from "../../components/track-item";
 import { PodcastEmptyPlaceholder } from "./components/podcast-empty-placeholder";
-import { listenNowAlbums, madeForYouAlbums } from "./data/albums";
-import getAlbum from "@/actions/music";
+
+
 import { Track } from "@/types/types";
+import { getAlbum, getRecommendations } from "@/actions/music";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -14,8 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default async function MusicPage() {
-  const data = (await getAlbum().then((track) => track.items)) as Track[];
-  // console.log(data);
+  const listTopTrack = (await getAlbum().then((track) => track.items)) as Track[];
+  const listRecommend  = (await getRecommendations().then((item)  => item.tracks )) as Track[];
   return (
     <>
       <div className="bg-background">
@@ -41,7 +42,7 @@ export default async function MusicPage() {
                   <div className="flex items-center justify-between">
                     <div className="space-y-1">
                       <h2 className="text-2xl font-semibold tracking-tight">
-                        Listen Now
+                      Top 5 tracks
                       </h2>
                       <p className="text-sm text-muted-foreground">
                         Top picks for you. Updated daily.
@@ -52,7 +53,7 @@ export default async function MusicPage() {
                   <div className="relative">
                     <ScrollArea>
                       <div className="flex space-x-4 pb-4">
-                        {data && data.map((tracks) => (
+                        {listTopTrack && listTopTrack.map((tracks) => (
                           <AlbumArtwork
                             key={tracks?.id}
                             className="w-[160px]"
@@ -71,14 +72,14 @@ export default async function MusicPage() {
                       Made for You
                     </h2>
                     <p className="text-sm text-muted-foreground">
-                      Your personal playlists. Updated daily.
+                      Recommend for you. Updated daily.
                     </p>
                   </div>
                   <Separator className="my-4" />
                   <div className="relative">
                     <ScrollArea>
                       <div className="flex space-x-4 pb-4">
-                        {data && data.map((tracks) => (
+                      {listRecommend && listRecommend.map((tracks) => (
                           <AlbumArtwork
                             key={tracks?.id}
                             className="w-[160px]"

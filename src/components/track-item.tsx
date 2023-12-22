@@ -18,7 +18,6 @@ export function AlbumArtwork({
   track,
   ...props
 }: AlbumArtworkProps) {
-  console.log(aspectRatio);
   return (
     <div className={cn("space-y-3 h-full p-4 transition duration-300 rounded-lg cursor-pointer group/item hover:bg-paper-400 bg-paper-500", className)} {...props}>
       <div className="relative rounded-md">

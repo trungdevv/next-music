@@ -1,6 +1,5 @@
 "use client";
 
-
 import { usePlayer } from "@/provider/track-player-provider";
 import { fmtMSS } from "@/utils/clientUtils";
 import * as Progress from "@radix-ui/react-progress";
@@ -44,22 +43,21 @@ export default function MainControllers() {
           <Repeat2 size={16} className="text-gray" />
         </button>
       </div>
-
-      <div className="flex items-center justify-center gap-2">
-        <span className="text-xs text-gray">
+      <div className="flex items-center justify-center gap-3">
+        <span className="text-xs text-gray w-8 items-center">
           {currentTime ? fmtMSS(currentTime * 1000) : "0:00"}
         </span>
         <Progress.Root
-          className="relative h-1 overflow-hidden rounded-full bg-slate-950"
+          className="relative h-1 overflow-hidden rounded-full bg-slate-950 w-96"
           style={{ transform: "translateZ(0)" }}
           value={slider}
         >
           <Progress.Indicator
-            className="bg-white w-full h-full transition-transform grow duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+            className="bg-white h-full transition-transform grow duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
             style={{ transform: `translateX(-${100 - slider}%)` }}
           />
         </Progress.Root>
-        <span className="text-xs text-gray">
+        <span className="text-xs text-gray w-8 items-center">
           {duration ? fmtMSS(duration * 1000) : "0:00"}
         </span>
       </div>

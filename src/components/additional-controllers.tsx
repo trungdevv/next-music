@@ -5,7 +5,7 @@ export default function AdditionalControllers() {
     <div className="flex items-center gap-3">
       {/* Icons */}
       <button>
-        <Volume2 size={16} className="text-gray" />
+        <Volume2 size={15} className="text-gray" />
       </button>
       {/* Volume bar */}
       <div className="w-20 mt-3">

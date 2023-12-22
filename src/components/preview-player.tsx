@@ -14,12 +14,11 @@ export default function PreviewPlayer() {
 
   return (
     <footer
-      // className="grid items-center justify-between grid-cols-12 p-3 bg-red-900"
       className={`fixed bottom-0 left-0 right-0 bg-[#CCC] border-t ${
         currentTrack ? "py-3" : "py-0"
       }`}
     >
-      <div className="container max-w-screen-xl flex ">
+      <div className="container max-w-screen-xl flex justify-center gap-5">
         <MainControllers />
         <PlayerTrackInfo currentTrack={currentTrack} />
         <AdditionalControllers />

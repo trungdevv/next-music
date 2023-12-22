@@ -46,9 +46,8 @@ export default async function RootLayout({
                     </div>
                   </div>
                   <main className="w-[80%]">{children}</main>
-                
                 </div>
-                <PreviewPlayer/>
+                <PreviewPlayer />
               </div>
             </TrackPlayerProvider>
           ) : (
