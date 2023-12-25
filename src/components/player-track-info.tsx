@@ -22,8 +22,8 @@ export default function PlayerTrackInfo({ currentTrack }: IProps) {
       ) : (
         <Music size={56} />
       )}
-      <div className="max-w-[150px]">
-        <p className="text-xs font-semibold text-white truncate">
+      <div className="max-w-[200px]">
+        <p className="text-xs font-semibold text-gray truncate">
           {currentTrack?.name}   {currentTrack?.name}   {currentTrack?.name}   {currentTrack?.name}
         </p>
         <Link

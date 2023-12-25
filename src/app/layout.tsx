@@ -4,8 +4,7 @@ import "./globals.css";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/provider/session-provider";
 import { Menu } from "../components/menu";
-import { Sidebar } from "./music/components/sidebar";
-import { playlists } from "./music/data/playlists";
+import { Sidebar } from "../components/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Scrollbar } from "@radix-ui/react-scroll-area";
 import ReactPlayer from "react-player/youtube";
@@ -39,10 +38,7 @@ export default async function RootLayout({
                 <div className="flex mt-14 container max-w-screen-xl mx-auto px-4">
                   <div className="h-screen w-[20%] self-start relative">
                     <div className="fixed">
-                      <Sidebar
-                        playlists={playlists}
-                        className="hidden lg:block"
-                      />
+                      <Sidebar className="hidden lg:block" />
                     </div>
                   </div>
                   <main className="w-[80%]">{children}</main>
